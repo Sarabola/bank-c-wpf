@@ -1,0 +1,17 @@
+﻿    <Window x:Class="BankSystem.LoginWindow"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            Title="Авторизация" Height="250" Width="400"
+            WindowStartupLocation="CenterScreen">
+        <Grid Margin="20">
+            <StackPanel>
+            <TextBox x:Name="txtUsername" Text="Введите логин" Foreground="Gray" Margin="0,0,0,10"
+         GotFocus="TextBox_GotFocus" LostFocus="TextBox_LostFocus"/>
+
+            <PasswordBox x:Name="txtPassword" Margin="0,0,0,10"/>
+                <Button Content="Войти" Click="Login_Click"/>
+                <Button Content="Войти как гость" Click="OpenGuest_Click"/>
+                <TextBlock x:Name="lblStatus" Foreground="Red"/>
+            </StackPanel>
+        </Grid>
+    </Window>

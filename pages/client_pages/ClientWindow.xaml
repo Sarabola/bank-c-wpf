@@ -1,0 +1,23 @@
+﻿<Window x:Class="BankWPFApp.pages.client_pages.ClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Client Window" Height="400" Width="500"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <StackPanel>
+            <TextBlock Text="Добро пожаловать, Клиент!" FontSize="20" FontWeight="Bold" Margin="0,0,0,20"/>
+
+            <TextBlock Text="Доступные операции:" FontWeight="SemiBold" Margin="0,0,0,10"/>
+            <ListBox>
+                <ListBoxItem MouseDoubleClick="Balance_Click">Просмотр баланса</ListBoxItem>
+                <ListBoxItem MouseDoubleClick="UserProfile_Click">Персональные данные</ListBoxItem>
+                <ListBoxItem MouseDoubleClick="Transfer_Click">Перевод средств</ListBoxItem>
+                <ListBoxItem MouseDoubleClick="TransactionsHistory_Click">История транзакций</ListBoxItem>
+                <ListBoxItem MouseDoubleClick="Deposit_Click">Пополнение счета</ListBoxItem>
+                <ListBoxItem MouseDoubleClick="Withdrawal_Click">Снятие денег со счёта</ListBoxItem>
+            </ListBox>
+
+            <Button Content="Выйти" Width="80" Margin="0,20,0,0" HorizontalAlignment="Left" Click="Logout_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

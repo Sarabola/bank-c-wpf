@@ -1,0 +1,21 @@
+﻿<Window x:Class="BankWPFApp.pages.admin_pages.UsersWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Список пользователей" Height="700" Width="1050"
+        WindowStartupLocation="CenterScreen">
+    <Grid Margin="10">
+        <DataGrid x:Name="UsersDataGrid" AutoGenerateColumns="False" IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding UserID}" Width="50"/>
+                <DataGridTextColumn Header="Логин" Binding="{Binding Username}" Width="150"/>
+                <DataGridTextColumn Header="Роль" Binding="{Binding RoleName}" Width="100"/>
+                <DataGridTextColumn Header="Фамилия" Binding="{Binding LastName}" Width="100"/>
+                <DataGridTextColumn Header="Имя" Binding="{Binding FirstName}" Width="100"/>
+                <DataGridTextColumn Header="Отчество" Binding="{Binding Patronymic}" Width="100"/>
+                <DataGridTextColumn Header="Телефон" Binding="{Binding Number_of_phone}" Width="150"/>
+                <DataGridTextColumn Header="№Карты" Binding="{Binding Number_of_cart}" Width="150"/>
+                <DataGridTextColumn Header="Текущий баланс" Binding="{Binding Amount}" Width="100"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
