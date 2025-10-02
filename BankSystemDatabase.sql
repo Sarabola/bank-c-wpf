@@ -1,0 +1,61 @@
+CREATE DATABASE  IF NOT EXISTS BankSystem CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+CREATE TABLE IF NOT EXISTS Roles(
+    RoleID INT AUTO_INCREMENT PRIMARY KEY,
+    RoleName VARCHAR(50) NOT NULL UNIQUE
+);
+
+INSERT INTO Roles (RoleName) VALUES ('Администратор'), ('Клиент');
+
+CREATE TABLE IF NOT EXISTS Users(
+    UserID INT AUTO_INCREMENT PRIMARY KEY,
+    Username VARCHAR(50) NOT NULL UNIQUE,
+    Password VARCHAR(255) NOT NULL,
+    RoleID INT NOT NULL,
+    FOREIGN KEY (RoleID) REFERENCES Roles(RoleID)
+);
+
+INSERT INTO Users (Username, Password, RoleID) VALUES ("admin", "admin", "1");
+
+
+CREATE TABLE IF NOT EXISTS Wallets(
+    WalletID INT AUTO_INCREMENT PRIMARY KEY,
+    OwnerID INT NOT NULL,
+    Amount INT NOT NULL DEFAULT 0,
+    FOREIGN KEY (OwnerID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+
+CREATE TABLE IF NOT EXISTS PersonalDatas (
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) DEFAULT NULL,
+    Patronymic VARCHAR(50) DEFAULT NULL,
+    OwnerID INT NOT NULL,
+    
+    FOREIGN KEY (OwnerID) REFERENCES Users(UserID) ON DELETE CASCADE
+);		
+
+CREATE TABLE IF NOT EXISTS Transactions (
+    TransactionID INT AUTO_INCREMENT PRIMARY KEY,
+    TransactionType ENUM('Deposit', 'Transfer', 'Withdrawal') NOT NULL DEFAULT 'Deposit',
+    FromID INT DEFAULT NULL,
+    ToID INT DEFAULT NULL,
+    Transaction_time DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    Amount INT NOT NULL,
+    
+    FOREIGN KEY (FromID) REFERENCES Users(UserID) ON DELETE SET NULL,
+    FOREIGN KEY (ToID) REFERENCES Users(UserID) ON DELETE SET NULL
+);
+
+CREATE TABLE IF NOT EXISTS PaymentDetails (
+    PaymentID INT AUTO_INCREMENT PRIMARY KEY,
+    Number_of_phone VARCHAR(20) NOT NULL UNIQUE 
+        CHECK (Number_of_phone REGEXP '^\\+[0-9]{10,15}$'),
+    Number_of_cart CHAR(16) NOT NULL UNIQUE 
+        CHECK (Number_of_cart REGEXP '^[0-9]{16}$'),
+    OwnerID INT NOT NULL,
+    FOREIGN KEY (OwnerID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+
